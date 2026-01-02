@@ -3,314 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FastSewa Land | Secure Property Verification</title>
+    <title>FastSewa - Land & Property Verification</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/land.css">
-    <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="css/style.css">     
+    <link rel="stylesheet" href="css/footer.css">    
+    <link rel="stylesheet" href="css/chatbot.css">   
+    
+    <style>
+        /* --- PAGE STYLES --- */
+        body { background-color: #f8fafc; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+
+        /* Navbar Fix */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        /* Hero Section - Land Theme (Green/Earth) */
+        .land-hero {
+            position: relative; height: 60vh; min-height: 500px;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white;
+            background: linear-gradient(135deg, #14532d 0%, #166534 100%); /* Deep Green */
+            margin-top: 80px; overflow: hidden;
+        }
+
+        .land-hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center; opacity: 0.2;
+        }
+
+        .hero-content { z-index: 2; padding: 0 20px; }
+        .hero-content h1 {
+            font-size: 3.5rem; font-weight: 700; margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #86efac);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-content p { font-size: 1.2rem; color: #dcfce7; max-width: 700px; margin: 0 auto; }
+
+        /* --- SEARCH WIDGET --- */
+        .search-widget {
+            background: white; padding: 20px; border-radius: 50px;
+            display: flex; gap: 10px; max-width: 700px; margin: 30px auto 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .search-input { border: none; outline: none; flex: 1; padding: 10px 20px; font-size: 1rem; }
+        .search-btn {
+            background: #ff5722; color: white; border: none; padding: 10px 30px;
+            border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+        .search-btn:hover { background: #e64a19; }
+
+        /* --- PACKAGES SECTION --- */
+        .packages-section { padding: 80px 0; background: #fff; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.2rem; color: #14532d; font-weight: 700; }
+        
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+        }
+
+        .pricing-card {
+            background: white; border-radius: 16px; padding: 35px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .pricing-card:hover { transform: translateY(-8px); border-color: #166534; box-shadow: 0 20px 40px rgba(20, 83, 45, 0.1); }
+        
+        .popular-ribbon {
+            position: absolute; top: 15px; right: -30px; transform: rotate(45deg);
+            background: #ff5722; color: white; padding: 5px 40px; font-size: 0.8rem; font-weight: bold;
+        }
+
+        .price-tag { font-size: 2rem; font-weight: 700; color: #14532d; margin: 15px 0; }
+        .price-tag span { font-size: 0.9rem; color: #64748b; font-weight: 400; }
+
+        .features-list { list-style: none; padding: 0; text-align: left; margin-bottom: 25px; }
+        .features-list li { margin-bottom: 12px; color: #475569; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+        .features-list li i { color: #166534; }
+
+        .btn-select {
+            width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer;
+            transition: 0.3s; background: #14532d; color: white;
+        }
+        .btn-select:hover { background: #14532d; opacity: 0.9; }
+        .pricing-card.featured .btn-select { background: #ff5722; }
+
+        /* --- VERIFICATION FORM SECTION --- */
+        .filing-section { padding: 80px 0; background: #f8fafc; }
+        .filing-container { display: flex; flex-wrap: wrap; gap: 50px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Left: Dynamic Docs */
+        .info-side { flex: 1; min-width: 320px; }
+        .docs-card {
+            background: white; border-radius: 16px; padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e5e7eb;
+            position: sticky; top: 120px;
+        }
+        .docs-card h3 { font-size: 1.2rem; color: #14532d; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .doc-list li { margin-bottom: 12px; padding-left: 10px; border-left: 3px solid #ff5722; color: #334155; font-size: 0.95rem; }
+
+        /* Right: Form (No Labels) */
+        .form-side { flex: 1.2; min-width: 350px; }
+        .booking-form-card {
+            background: white; padding: 40px; border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;
+        }
+        
+        .form-header h3 { font-size: 1.5rem; color: #14532d; margin-bottom: 5px; font-weight: 700; }
+        .form-header p { color: #64748b; font-size: 0.95rem; margin-bottom: 25px; }
+
+        .form-group { margin-bottom: 20px; }
+        
+        /* Input Styling */
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 15px 15px; border: 1px solid #cbd5e1;
+            border-radius: 8px; font-size: 1rem; background-color: #ffffff;
+            color: #1e293b; outline: none; transition: 0.2s; font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: #94a3b8; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #ff5722; box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%; padding: 15px; background: #ff5722; color: white;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 1rem;
+            cursor: pointer; transition: 0.3s;
+        }
+        .btn-submit:hover { background: #e64a19; }
+
+        /* PAYMENT MODAL */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000; display: none;
+            align-items: center; justify-content: center; backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white; width: 90%; max-width: 400px; border-radius: 20px;
+            padding: 30px; text-align: center; position: relative; animation: zoomIn 0.3s;
+        }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; border: none; background: none; }
+        .upi-qr { width: 200px; margin: 20px 0; border: 1px solid #ddd; border-radius: 10px; padding: 5px; }
+        
+        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .filing-container { flex-direction: column; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .search-widget { flex-direction: column; border-radius: 20px; }
+            .search-btn { width: 100%; border-radius: 10px; }
+        }
+    </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="container nav-container">
+        <div class="container nav-container" style="display: flex; justify-content: space-between; align-items: center; width: 90%; margin: 0 auto; max-width: 1200px;">
             <div class="logo">
-                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none;">
-                    <div class="logo-icon">
-                       <img src="images/logo1.png" alt="FastSewa Logo" style="height: 50px; width: auto; margin-right: 1rem;">
-                    </div>
-                    <div class="logo-text" style="font-size: 1.5rem; font-weight: bold; color: #333;">
-                        FastSewa<span style="color: #ff5722;"> Land</span>
-                    </div>
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <img src="images/logo1.png" alt="FS" style="height: 50px; width: auto;">
+                    <div style="font-size: 24px; font-weight: 800; color: #0f172a;">FastSewa<span> Facilities</span></div>
                 </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#search-records">Search Records</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#verify-doc">Verify Now</a></li>
-                <li><a href="login.html" class="btn-nav hide-mobile">Login/Signup</a></li>
+            <ul class="nav-links" style="display: flex; gap: 30px; list-style: none;">
+                <li><a href="index.html" style="color: #0f172a; font-weight: 500; text-decoration: none;">Home</a></li>
+                <li><a href="index.html#services" style="color: #0f172a; font-weight: 500; text-decoration: none;">Services</a></li>
+                <li id="auth-action">
+                    <a href="login.html" style="padding: 10px 25px; border-radius: 50px; background: #ff5722; color: white; font-weight: 600; text-decoration: none;">Login/Signup</a>
+                </li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
         </div>
     </nav>
 
-    <header class="land-hero" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/3.jpeg'); background-size: cover; background-position: center; color: white; padding: 150px 0 100px; text-align: center;">
-        <div class="container hero-content">
-            <span class="trust-badge" style="background: #22c55e; padding: 5px 15px; border-radius: 20px; font-size: 14px;"><i class="fas fa-shield-alt"></i> 100% Legal Verification</span>
-            <h1 style="font-size: 3.5rem; margin: 20px 0;">Don't Buy Trouble. <br><span style="color: #ff5722;">Verify Before You Buy.</span></h1>
-            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px;">We check government records, on-site possession, and legal disputes to ensure your land investment is safe.</p>
+    <header class="land-hero">
+        <div class="hero-content">
+            <h1>Secure Your Land Investment</h1>
+            <p>100% Legal Verification, Government Record Check & Physical Survey.</p>
             
-            <div class="hero-btns" style="display: flex; justify-content: center; gap: 15px;">
-                <a href="#search-records" class="btn btn-primary" style="background: #ff5722; border: none; padding: 12px 30px; color: white; border-radius: 5px; text-decoration: none;">Check Land Record</a>
-                <a href="#verify-doc" class="btn btn-secondary" style="background: transparent; border: 2px solid white; padding: 12px 30px; color: white; border-radius: 5px; text-decoration: none;">Upload Documents</a>
+            <div class="search-widget">
+                <input type="text" class="search-input" placeholder="Enter Khata / Khasra No. or Location...">
+                <button class="search-btn" onclick="document.querySelector('.packages-section').scrollIntoView({behavior:'smooth'})">Check Now</button>
             </div>
         </div>
     </header>
 
-    <section id="search-records" class="section-pad" style="padding: 80px 0;">
-        <div class="container">
-            <div class="search-box-wrapper" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto;">
-                <div class="search-header" style="text-align: center; margin-bottom: 30px;">
-                    <h2 style="color: #333;"><i class="fas fa-search-location" style="color: #ff5722;"></i> Instant Land Record Check</h2>
-                    <p style="color: #666;">Access Bhulekh/Land Records across states instantly.</p>
-                </div>
-                
-                <div class="search-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                    <div class="input-group">
-                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">State</label>
-                        <select id="stateSelect" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                            <option>Bihar</option>
-                            <option>Uttar Pradesh</option>
-                            <option>Jharkhand</option>
-                            <option>Maharashtra</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">District</label>
-                        <select style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                            <option>Patna</option>
-                            <option>Gaya</option>
-                            <option>Muzaffarpur</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">Plot / Khasra No.</label>
-                        <input type="text" id="plotInput" placeholder="e.g. 420/A" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                    </div>
-                    <button class="btn-search" onclick="searchLand()" style="background: #333; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; height: 100%; margin-top: 24px;">Search Records</button>
-                </div>
-
-                <div id="searchResult" class="search-result" style="display: none; margin-top: 20px; padding: 20px; background: #f9f9f9; border-radius: 10px;">
-                    <div class="loader" id="loader">Loading...</div>
-                    <div class="result-data" id="resultData" style="display: none;">
-                        <div class="status-success" style="color: green; font-weight: bold; margin-bottom: 10px;"><i class="fas fa-check-circle"></i> Record Found</div>
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <tr><td style="padding: 5px;">Owner Name:</td><td><strong>Rajesh Kumar Singh</strong></td></tr>
-                            <tr><td style="padding: 5px;">Area:</td><td>1200 Sq. Ft.</td></tr>
-                            <tr><td style="padding: 5px;">Type:</td><td>Residential / Plot</td></tr>
-                            <tr><td style="padding: 5px;">Dispute Status:</td><td style="color: green;">Clear (No Court Stay)</td></tr>
-                        </table>
-                        <button class="btn-full-report" style="margin-top: 15px; background: #ff5722; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Download Full Report (PDF)</button>
-                    </div>
-                </div>
-            </div>
+    <section class="packages-section">
+        <div class="section-header">
+            <h2>Verification Packages</h2>
+            <p style="color:#64748b;">Select a plan to hire a Land Expert.</p>
         </div>
-    </section>
-
-    <section id="services" class="section-pad bg-light" style="padding: 80px 0; background: #f4f4f4;">
-        <div class="container">
-            <div class="section-title" style="text-align: center; margin-bottom: 40px;">
-                <h2 style="font-size: 2.5rem;">Comprehensive Verification</h2>
-                <p style="color: #666;">We go beyond just online records.</p>
-            </div>
+        <div class="pricing-grid">
             
-            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-                <div class="svc-card" style="background: white; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;">
-                    <div class="icon-box" style="font-size: 40px; color: #ff5722; margin-bottom: 20px;"><i class="fas fa-file-contract"></i></div>
-                    <h3>Title Verification</h3>
-                    <p style="color: #666;">Tracing ownership history for the last 30 years to ensure clean title.</p>
-                </div>
-                <div class="svc-card" style="background: white; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;">
-                    <div class="icon-box" style="font-size: 40px; color: #ff5722; margin-bottom: 20px;"><i class="fas fa-ruler-combined"></i></div>
-                    <h3>Physical Survey</h3>
-                    <p style="color: #666;">On-ground measurement to check actual area vs. documented area.</p>
-                </div>
-                <div class="svc-card" style="background: white; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;">
-                    <div class="icon-box" style="font-size: 40px; color: #ff5722; margin-bottom: 20px;"><i class="fas fa-gavel"></i></div>
-                    <h3>Litigation Check</h3>
-                    <p style="color: #666;">Checking local courts for any pending cases or stay orders on the land.</p>
-                </div>
-                <div class="svc-card" style="background: white; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;">
-                    <div class="icon-box" style="font-size: 40px; color: #ff5722; margin-bottom: 20px;"><i class="fas fa-hand-holding-usd"></i></div>
-                    <h3>Market Valuation</h3>
-                    <p style="color: #666;">Getting the true government circle rate and market value estimation.</p>
-                </div>
+            <div class="pricing-card">
+                <h3>Digital Record Check</h3>
+                <div class="price-tag">₹999 <span>/ plot</span></div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Online Bhulekh Record</li>
+                    <li><i class="fas fa-check"></i> Ownership History (15 Yrs)</li>
+                    <li><i class="fas fa-check"></i> Loan/Mortgage Check</li>
+                    <li><i class="fas fa-check"></i> Digital Report (PDF)</li>
+                </ul>
+                <button class="btn-select" onclick="openPayment('Digital Land Check', 999)">Select & Pay</button>
             </div>
+
+            <div class="pricing-card featured">
+                <div class="popular-ribbon">Most Popular</div>
+                <h3>Full Legal Verify</h3>
+                <div class="price-tag">₹2,999 <span>/ plot</span></div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> <b>Lawyer Verification</b></li>
+                    <li><i class="fas fa-check"></i> Registry Paper Check</li>
+                    <li><i class="fas fa-check"></i> Litigation/Court Case Check</li>
+                    <li><i class="fas fa-check"></i> "Safe-to-Buy" Certificate</li>
+                </ul>
+                <button class="btn-select" style="background:#ff5722;" onclick="openPayment('Full Legal Verification', 2999)">Select & Pay</button>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Physical Survey</h3>
+                <div class="price-tag">₹5,999 <span>/ plot</span></div>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> <b>Amin / Surveyor Visit</b></li>
+                    <li><i class="fas fa-check"></i> Exact Area Measurement</li>
+                    <li><i class="fas fa-check"></i> Encroachment Check</li>
+                    <li><i class="fas fa-check"></i> Map & Boundary Report</li>
+                </ul>
+                <button class="btn-select" onclick="openPayment('Physical Land Survey', 5999)">Select & Pay</button>
+            </div>
+
         </div>
     </section>
 
-    <section id="verify-doc" class="section-pad" style="padding: 80px 0;">
-        <div class="container split-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
-            <div class="left-content">
-                <h2 style="margin-bottom: 20px;">Get an Expert Legal Opinion</h2>
-                <p style="color: #666; margin-bottom: 20px;">Upload your registry papers, agreements, or maps. Our legal team will analyze them and give you a "Safe to Buy" score.</p>
-                
-                <ul class="benefit-list" style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: green; margin-right: 10px;"></i> 48-Hour Turnaround</li>
-                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: green; margin-right: 10px;"></i> Lawyer Certified Report</li>
-                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: green; margin-right: 10px;"></i> Hidden Clauses Detection</li>
-                </ul>
+    <section class="filing-section">
+        <div class="filing-container">
+            
+            <div class="info-side">
+                <div class="docs-card">
+                    <h3><i class="fas fa-folder-open"></i> Required Details</h3>
+                    <p style="color:#64748b; font-size:0.9rem; margin-bottom:15px;">Information needed for verification:</p>
+                    <ul class="doc-list" id="dynamicDocs">
+                        <li>Select a service to view requirements...</li>
+                    </ul>
+                </div>
+
+                <div class="docs-card" style="margin-top: 30px;">
+                    <h3><i class="fas fa-headset"></i> Expert Support</h3>
+                    <p style="color:#475569; margin-bottom: 10px;">Buying land? Talk to our legal advisor first.</p>
+                    <a href="tel:+918275723755" style="color: #ff5722; font-weight: bold; text-decoration: none; font-size: 1.1rem;">+91 82757 23755</a>
+                </div>
             </div>
 
-            <div class="right-form">
-                <div class="upload-card" style="background: white; padding: 30px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <h3 style="margin-bottom: 20px;">Request Verification</h3>
-                    <form onsubmit="event.preventDefault(); submitRequest();">
-                        <div class="form-group" style="margin-bottom: 15px;">
-                            <input type="text" placeholder="Your Name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+            <div class="form-side">
+                <div class="booking-form-card">
+                    <div class="form-header">
+                        <h3>Start Verification</h3>
+                        <p>Fill details and enter Transaction ID after payment.</p>
+                    </div>
+                    
+                    <form id="landForm">
+                        <div class="form-group">
+                            <input type="text" name="fullName" id="fullName" class="form-input" required placeholder="Full Name (Ex: Rahul Kumar)">
                         </div>
-                        <div class="form-group" style="margin-bottom: 15px;">
-                            <input type="tel" placeholder="Mobile Number" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
-                        </div>
-                        
-                        <div class="drop-zone" id="dropZone" style="border: 2px dashed #ddd; padding: 30px; text-align: center; border-radius: 5px; cursor: pointer; margin-bottom: 20px;">
-                            <i class="fas fa-cloud-upload-alt" style="font-size: 30px; color: #aaa;"></i>
-                            <p style="margin: 10px 0; color: #666;">Drag & drop property documents here</p>
-                            <small style="color: #999;">or click to browse (PDF, JPG)</small>
-                            <input type="file" id="fileInput" hidden>
-                        </div>
-                        <div id="fileName" class="file-name" style="margin-bottom: 10px; font-size: 14px; color: green;"></div>
 
-                        <button type="submit" class="btn-submit" style="width: 100%; background: #ff5722; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer;">Submit for Review</button>
+                        <div style="display: flex; gap: 15px;">
+                            <div class="form-group" style="flex: 1;">
+                                <input type="email" name="email" id="email" class="form-input" required placeholder="Email Address">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <input type="tel" name="phone" id="phone" class="form-input" required placeholder="Phone Number">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="serviceType" class="form-select" required onchange="updateDocs()">
+                                <option value="" disabled selected>Select Service Type</option>
+                                <option value="Digital Check">Digital Record Check (Online)</option>
+                                <option value="Legal Verify">Full Legal Verification (Deed Check)</option>
+                                <option value="Physical Survey">Physical Survey (Amin Visit)</option>
+                                <option value="Market Valuation">Govt Valuation Report</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" id="txnId" class="form-input" placeholder="Enter Transaction ID (UPI Ref No.)">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="message" id="message" class="form-textarea" rows="3" placeholder="Enter Plot No, Khata No, District, State..."></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn-submit">Submit & Hire Expert</button>
                     </form>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <footer style="background: #111; color: #fff; padding: 40px 0 20px; font-family: 'Poppins', sans-serif;">
-        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid #333; padding-bottom: 30px;">
-                <div style="flex: 1; min-width: 250px;">
-                    <h3 style="color: #ff5722; margin-bottom: 20px;">Our Office</h3>
-                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-map-marker-alt" style="color:#ff5722; margin-right:10px;"></i> B Hub, Gandhi Maidan, Patna, Bihar</p>
-                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-phone-alt" style="color:#ff5722; margin-right:10px;"></i> +91 8275723755</p>
-                    <p style="font-size: 14px; color: #bbb;"><i class="fas fa-envelope" style="color:#ff5722; margin-right:10px;"></i> Fastsewa2020@gmail.com</p>
-                </div>
-                <div style="flex: 1; min-width: 250px; text-align: center;">
-                    <h3 style="color: #ff5722; margin-bottom: 20px;">Connect With Us</h3>
-                    <div style="display: flex; justify-content: center; gap: 15px;">
-                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div style="flex: 1; min-width: 250px;">
-                    <h3 style="color: #ff5722; margin-bottom: 20px;">Live Statistics</h3>
-                    <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-                        <p style="margin: 8px 0; font-size: 15px; color: #eee;">Total Visitors: <span style="color: #ff5722; font-weight: 700; float: right;">12,543</span></p>
-                        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #333; display: flex; align-items: center; justify-content: space-between;">
-                            <span style="font-size: 14px; color: #22c55e;"><span style="height: 8px; width: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 8px;"></span> Online Now</span>
-                            <span style="font-weight: 700; color: #22c55e;">24</span>
-                        </div>
-                    </div>
-                </div>
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closePayment()">&times;</button>
+            <h3 style="color: #14532d; margin-bottom: 5px;">Scan to Pay</h3>
+            <p id="planName" style="color: #ff5722; font-weight: 600; font-size: 1.1rem;"></p>
+            
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 12px; margin: 20px 0;">
+                <img src="" alt="UPI QR" class="upi-qr" id="upiQR">
+                <p style="font-size: 0.9rem; color: #333; margin-top: 10px;"><b>Pay to:</b> 6207141506@upi</p>
+                <p style="font-size: 0.8rem; color: #64748b;">(GPay / PhonePe / Paytm)</p>
             </div>
-            <div style="text-align: center; padding-top: 20px; font-size: 13px; color: #666;">
-                <p>&copy; 2024 FastSewa Land Services. Built for Trust. | Developed by Team Vivek Kumar</p>
-            </div>
+
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 15px;">Note down Transaction ID for the form.</p>
+            <button class="btn-submit" onclick="closePayment()">I Have Paid</button>
         </div>
-    </footer>
-
-    <button class="fastsewa-chatbot-toggle" id="toggleBtn">
-      <i class="fas fa-headset"></i>
-    </button>
-
-    <div class="fastsewa-chatbot-container" id="chatbox" style="display: none;">
-      <div class="fastsewa-chatbot-header">
-        <b>FastSewa Assistant</b>
-        <button id="closeBtn" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">✕</button>
-      </div>
-      <div class="fastsewa-chatbot-body" id="chatBody"></div>
-      <div class="fastsewa-chatbot-footer">
-        <input id="chatInput" class="fastsewa-chatbot-input" placeholder="Type message..." />
-        <button class="fastsewa-chatbot-send-btn" onclick="sendMessage()">
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </div>
     </div>
 
-    <script src="js/land.js"></script>
+    <div id="fastsewa-footer"></div>
+
+    <button class="fastsewa-chatbot-toggle" id="toggleBtn"><i class="fas fa-comment-dots"></i></button>
+    <div class="fastsewa-chatbot-container" id="chatbox" style="display: none;">
+        <div class="fastsewa-chatbot-header">
+            <div><i class="fas fa-robot"></i> FastSewa AI</div>
+            <button id="closeBtn" style="background:none; border:none; color:white; cursor:pointer;">✕</button>
+        </div>
+        <div class="fastsewa-chatbot-body" id="chatBody"></div>
+        <div class="fastsewa-chatbot-footer">
+            <input id="chatInput" class="fastsewa-chatbot-input" placeholder="Type message..." />
+            <button class="fastsewa-chatbot-send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="js/footer.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
     <script>
-      // Chatbot Integration
-      const API = "/api"; 
-      const chatbox = document.getElementById("chatbox");
-      const chatBody = document.getElementById("chatBody");
-      const input = document.getElementById("chatInput");
-      const toggleBtn = document.getElementById("toggleBtn");
-      const closeBtn = document.getElementById("closeBtn");
+        // --- 1. DYNAMIC DOCS LOGIC ---
+        const docsData = {
+            "Digital Check": ["Mouza/Village Name", "Khata No. & Khasra No.", "Thana Number", "Owner Name (Optional)"],
+            "Legal Verify": ["Copy of Sale Deed (Registry)", "Chain of Title (Old Deeds)", "Latest Rent Receipt (Malgujari)", "Agreement Copy"],
+            "Physical Survey": ["Full Address / Google Location", "Contact Person at Site", "Boundary Details", "Copy of Map (Naksha)"],
+            "Market Valuation": ["Plot Area (Sq. Ft / Katha)", "Road Width", "Locality Details", "Plot No."]
+        };
 
-      toggleBtn.onclick = () => {
-        if(chatbox.style.display === "flex"){
-            chatbox.style.display = "none";
-        } else {
-            chatbox.style.display = "flex";
-            if(chatBody.innerHTML.trim() === "") initChat();
+        function updateDocs() {
+            const service = document.getElementById("serviceType").value;
+            const list = document.getElementById("dynamicDocs");
+            list.innerHTML = ""; // Clear old list
+
+            if (docsData[service]) {
+                docsData[service].forEach(doc => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<i class="fas fa-check" style="color:#ff5722; margin-right:8px;"></i> ${doc}`;
+                    list.appendChild(li);
+                });
+            } else {
+                list.innerHTML = "<li><i class='fas fa-info-circle'></i> Select a service to view requirements.</li>";
+            }
         }
-      };
-      
-      closeBtn.onclick = () => {
-        chatbox.style.display = "none";
-      };
 
-      function addMsg(text, type) {
-        const div = document.createElement("div");
-        div.className = "fastsewa-message " + (type === "bot" ? "fastsewa-bot-message" : "fastsewa-user-message");
-        div.innerHTML = text;
-        chatBody.appendChild(div);
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }
-
-      window.sendMessage = async function(key) {
-        let msg = key || input.value.trim();
-        if (!msg) return;
-        addMsg(msg, "user");
-        input.value = "";
-        try {
-          const res = await fetch(`${API}/chat`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: msg })
-          });
-          const data = await res.json();
-          addMsg(data.response || "Sorry, I didn't understand.", "bot");
-        } catch (err) {
-          console.error(err);
-          addMsg("❌ Backend connection failed.", "bot");
+        // --- 2. PAYMENT MODAL (Dynamic QR for 6207141506) ---
+        function openPayment(plan, amount) {
+            document.getElementById('planName').innerText = `${plan} - ₹${amount}`;
+            
+            // Dynamic UPI Link
+            const upiId = "6207141506@upi";
+            const name = "FastSewa Land";
+            const upiLink = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}&tn=${plan}`;
+            
+            // Generate QR Code Image
+            document.getElementById('upiQR').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
+            
+            document.getElementById('paymentModal').style.display = 'flex';
         }
-      };
 
-      input.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
+        function closePayment() {
+            document.getElementById('paymentModal').style.display = 'none';
+            document.getElementById("txnId").focus();
+        }
 
-      function initChat() {
-        addMsg("👋 Welcome to FastSewa Land Services! Need help verifying property?", "bot");
-      }
+        // --- 3. EMAILJS LOGIC ---
+        (function () { 
+            emailjs.init("82w8_I7wL3TeHxJa6"); // YOUR PUBLIC KEY
+        })();
 
-      // Drag and Drop Logic
-      const dropZone = document.getElementById('dropZone');
-      const fileInput = document.getElementById('fileInput');
-      const fileNameDisplay = document.getElementById('fileName');
+        document.getElementById("landForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const txnId = document.getElementById('txnId').value;
+            
+            btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+            btn.disabled = true;
 
-      dropZone.addEventListener('click', () => fileInput.click());
+            const formData = {
+                from_name: document.getElementById('fullName').value,
+                from_email: document.getElementById('email').value,
+                message: `
+                    Phone: ${document.getElementById('phone').value}
+                    Service: ${document.getElementById('serviceType').value}
+                    Transaction ID: ${txnId ? txnId : 'Not Paid Yet'}
+                    Land Details: ${document.getElementById('message').value}
+                `
+            };
 
-      fileInput.addEventListener('change', () => {
-          if (fileInput.files.length > 0) {
-              fileNameDisplay.textContent = "Selected: " + fileInput.files[0].name;
-          }
-      });
+            emailjs.send("service_ap93y7a", "template_hvuzvq9", formData)
+            .then(function() {
+                alert("✅ Request Submitted! Our Land Expert will call you shortly.");
+                document.getElementById("landForm").reset();
+                btn.innerHTML = 'Submit & Hire Expert';
+                btn.disabled = false;
+            }, function(error) {
+                alert("❌ Failed to send. Please try again.");
+                btn.innerHTML = 'Submit & Hire Expert';
+                btn.disabled = false;
+            });
+        });
 
-      function submitRequest() {
-          alert("Document submitted successfully for verification! Our team will contact you shortly.");
-      }
+        // --- 4. AUTH LOGIC ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const user = JSON.parse(localStorage.getItem("fastsewaUser"));
+            const authAction = document.getElementById("auth-action");
 
-      // Mock Search Function
-      function searchLand() {
-          document.getElementById('searchResult').style.display = 'block';
-          document.getElementById('loader').style.display = 'block';
-          document.getElementById('resultData').style.display = 'none';
-          
-          setTimeout(() => {
-              document.getElementById('loader').style.display = 'none';
-              document.getElementById('resultData').style.display = 'block';
-          }, 1500);
-      }
+            if (user && user.isLoggedIn && authAction) {
+                const firstName = user.name.split(" ")[0];
+                authAction.innerHTML = `
+                    <div class="user-nav-profile" style="position: relative; display: inline-block;">
+                        <a href="dashboard.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; background: white; padding: 5px 15px 5px 5px; border-radius: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 1px solid #eee;">
+                            <div style="width: 35px; height: 35px; background: #ff5722; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                ${firstName.charAt(0).toUpperCase()}
+                            </div>
+                            <span style="font-weight: 600; font-size: 14px; color: #333;">${firstName}</span>
+                        </a>
+                    </div>
+                `;
+            }
+        });
     </script>
 </body>
 </html>
