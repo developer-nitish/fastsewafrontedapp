@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastSewa - Support & Solutions Center</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #2ec4b6;
+            --accent: #ff9f1c;
+            --dark: #011627;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        .service-card {
+            background: white; border-radius: 16px; overflow: hidden;
+            box-shadow: var(--shadow); transition: var(--transition);
+            height: 100%; border: 1px solid #e2e8f0;
+        }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-header {
+            padding: 25px; color: white; display: flex; align-items: center; gap: 15px;
+        }
+        .service-body { padding: 30px; }
+        .service-features { list-style: none; margin: 20px 0; padding: 0; }
+        .service-features li {
+            padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px;
+            display: flex; gap: 10px; align-items: center; color: #64748b;
+        }
+        .service-features i { color: var(--secondary); }
+        .btn-small { padding: 8px 15px; font-size: 13px; text-decoration: none; border-radius: 5px; }
+        .verification-step {
+            background: white; padding: 30px; border-radius: 16px;
+            text-align: center; box-shadow: var(--shadow);
+        }
+        .step-number {
+            width: 50px; height: 50px; background: var(--gradient);
+            color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 20px;
+            font-weight: bold; margin: 0 auto 20px;
+        }
+        .contact-method {
+            background: white; padding: 25px; border-radius: 16px;
+            box-shadow: var(--shadow); display: flex; gap: 20px;
+            align-items: flex-start; margin-bottom: 20px;
+        }
+        .contact-method i {
+            font-size: 24px; color: var(--primary);
+            background: #eff6ff; padding: 15px; border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none;">
+                    <div class="logo-icon">
+                       <img src="images/logo1.png" alt="FastSewa Logo" style="height: 50px; width: auto; margin-right: 1rem;">
+                    </div>
+                    <div class="logo-text" style="font-size: 1.5rem; font-weight: bold; color: #333;">
+                        FastSewa<span style="color: #ff5722;"> Support</span>
+                    </div>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#all-services">All Services</a></li>
+                <li><a href="#verification">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="login.html" class="btn-nav hide-mobile">Login/Signup</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/3.jpeg'); background-size: cover; background-position: center; padding: 150px 0 100px; color: white; text-align: center;">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Complete Support for All <span style="color: #ff5722;">FastSewa</span> Services</h1>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 30px;">Your trusted partner for construction, security, legal, healthcare, land verification, maintenance, finance, and material solutions. Get 24/7 support for all 9 essential services.</p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="#all-services" class="btn btn-primary" style="background: #ff5722; border: none; padding: 12px 30px; color: white; border-radius: 5px; text-decoration: none;">Explore Services</a>
+                <a href="#contact" class="btn" style="background: transparent; border: 2px solid white; color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none;">Contact Support</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="all-services" style="padding: 80px 0; background: #f8fafc;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; color: #333;">9 Essential FastSewa Services</h2>
+                <p style="color: #64748b;">Complete solutions for your every need</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                
+                <div class="service-card">
+                    <div class="service-header" style="background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);">
+                        <i class="fas fa-hammer" style="font-size: 24px;"></i>
+                        <h3>Construction</h3>
+                    </div>
+                    <div class="service-body">
+                        <p>Complete house & commercial construction solutions.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Free site inspection</li>
+                            <li><i class="fas fa-check"></i> Transparent estimation</li>
+                            <li><i class="fas fa-check"></i> Timely completion</li>
+                        </ul>
+                        <div style="margin-top: 20px; display: flex; gap: 10px;">
+                            <a href="newconstruction.html" class="btn-small" style="background: #4361ee; color: white;">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header" style="background: linear-gradient(135deg, #2ec4b6 0%, #20a39e 100%);">
+                        <i class="fas fa-shield-alt" style="font-size: 24px;"></i>
+                        <h3>Security</h3>
+                    </div>
+                    <div class="service-body">
+                        <p>Professional guards for home and office.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Verified personnel</li>
+                            <li><i class="fas fa-check"></i> 24/7 monitoring</li>
+                            <li><i class="fas fa-check"></i> Flexible shifts</li>
+                        </ul>
+                        <div style="margin-top: 20px; display: flex; gap: 10px;">
+                            <a href="security.html" class="btn-small" style="background: #2ec4b6; color: white;">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header" style="background: linear-gradient(135deg, #7209b7 0%, #560bad 100%);">
+                        <i class="fas fa-gavel" style="font-size: 24px;"></i>
+                        <h3>Legal & GST</h3>
+                    </div>
+                    <div class="service-body">
+                        <p>GST, tax filing, and legal documentation.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> GST registration</li>
+                            <li><i class="fas fa-check"></i> ITR filing</li>
+                            <li><i class="fas fa-check"></i> CA consultation</li>
+                        </ul>
+                        <div style="margin-top: 20px; display: flex; gap: 10px;">
+                            <a href="legal.html" class="btn-small" style="background: #7209b7; color: white;">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header" style="background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);">
+                        <i class="fas fa-stethoscope" style="font-size: 24px;"></i>
+                        <h3>Medical</h3>
+                    </div>
+                    <div class="service-body">
+                        <p>Doctors and nurses at your doorstep.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Home visits</li>
+                            <li><i class="fas fa-check"></i> Emergency response</li>
+                            <li><i class="fas fa-check"></i> Equipment rental</li>
+                        </ul>
+                        <div style="margin-top: 20px; display: flex; gap: 10px;">
+                            <a href="medical.html" class="btn-small" style="background: #f72585; color: white;">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header" style="background: linear-gradient(135deg, #4cc9f0 0%, #4895ef 100%);">
+                        <i class="fas fa-map-marked-alt" style="font-size: 24px;"></i>
+                        <h3>Land Verification</h3>
+                    </div>
+                    <div class="service-body">
+                        <p>Property document checks and due diligence.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Title verification</li>
+                            <li><i class="fas fa-check"></i> Legal opinion</li>
+                            <li><i class="fas fa-check"></i> Site inspection</li>
+                        </ul>
+                        <div style="margin-top: 20px; display: flex; gap: 10px;">
+                            <a href="land.html" class="btn-small" style="background: #4cc9f0; color: white;">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header" style="background: linear-gradient(135deg, #ff9f1c 0%, #ffbf69 100%);">
+                        <i class="fas fa-tools" style="font-size: 24px;"></i>
+                        <h3>Repair</h3>
+                    </div>
+                    <div class="service-body">
+                        <p>Electrical, plumbing, and carpentry repairs.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Quick response</li>
+                            <li><i class="fas fa-check"></i> Verified technicians</li>
+                            <li><i class="fas fa-check"></i> Warranty on work</li>
+                        </ul>
+                        <div style="margin-top: 20px; display: flex; gap: 10px;">
+                            <a href="repair.html" class="btn-small" style="background: #ff9f1c; color: white;">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="verification" style="padding: 80px 0; background: white;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; color: #333;">Verified Professionals Process</h2>
+                <p style="color: #64748b;">Rigorous 5-step verification for all our partners</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                <div class="verification-step">
+                    <div class="step-number">1</div>
+                    <h3>Background Check</h3>
+                    <p>Criminal record verification</p>
+                </div>
+                <div class="verification-step">
+                    <div class="step-number">2</div>
+                    <h3>Skill Test</h3>
+                    <p>Practical assessment</p>
+                </div>
+                <div class="verification-step">
+                    <div class="step-number">3</div>
+                    <h3>ID Check</h3>
+                    <p>Aadhar & Address proof</p>
+                </div>
+                <div class="verification-step">
+                    <div class="step-number">4</div>
+                    <h3>Training</h3>
+                    <p>Service standards orientation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="padding: 80px 0; background: #f8fafc;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px;">
+                
+                <div>
+                    <h2 style="margin-bottom: 30px;">Get in Touch</h2>
+                    
+                    <div class="contact-method">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+91 8275723755</p>
+                            <small style="color: green;">24/7 Available</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>fastsewa2020@gmail.com</p>
+                            <small>Response within 24 hours</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Visit Us</h4>
+                            <p>B Hub, Gandhi Maidan, Patna</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: var(--shadow);">
+                    <h3 style="margin-bottom: 20px;">Send a Message</h3>
+                    <form id="contactForm">
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Your Name</label>
+                            <input type="text" name="name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Your Email</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Service Required</label>
+                            <select name="service" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
+                                <option>Construction</option>
+                                <option>Security</option>
+                                <option>Legal</option>
+                                <option>Medical</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Message</label>
+                            <textarea name="message" rows="4" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;"></textarea>
+                        </div>
+                        <button type="submit" style="width: 100%; padding: 15px; background: var(--gradient); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Send Message</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #111; color: #fff; padding: 40px 0 20px; font-family: sans-serif;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid #333; padding-bottom: 30px;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Our Office</h3>
+                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-map-marker-alt" style="color:#ff5722; margin-right:10px;"></i> B Hub, Gandhi Maidan, Patna, Bihar</p>
+                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-phone-alt" style="color:#ff5722; margin-right:10px;"></i> +91 8275723755</p>
+                    <p style="font-size: 14px; color: #bbb;"><i class="fas fa-envelope" style="color:#ff5722; margin-right:10px;"></i> Fastsewa2020@gmail.com</p>
+                </div>
+                <div style="flex: 1; min-width: 250px; text-align: center;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Connect With Us</h3>
+                    <div style="display: flex; justify-content: center; gap: 15px;">
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Live Statistics</h3>
+                    <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <p style="margin: 8px 0; font-size: 15px; color: #eee;">Total Visitors: <span style="color: #ff5722; font-weight: 700; float: right;">12,543</span></p>
+                        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #333; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="font-size: 14px; color: #22c55e;"><span style="height: 8px; width: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 8px;"></span> Online Now</span>
+                            <span style="font-weight: 700; color: #22c55e;">24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 20px; font-size: 13px; color: #666;">
+                <p>&copy; 2024 FastSewa Support Portal. All rights reserved. | Developed by Team Vivek Kumar</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+    (function () {
+        emailjs.init("82w8_I7wL3TeHxJa6"); // ✅ Public Key
+    })();
+
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm(
+            "service_ap93y7a",   // ✅ Service ID
+            "template_hvuzvq9",  // ✅ Template ID
+            this
+        ).then(
+            function () {
+                alert("✅ Message sent successfully!");
+                document.getElementById("contactForm").reset();
+            },
+            function (error) {
+                alert("❌ Message failed to send.");
+                console.log(error);
+            }
+        );
+    });
+    </script>
+
+    <button class="fastsewa-chatbot-toggle" id="toggleBtn">
+      <i class="fas fa-headset"></i>
+    </button>
+
+    <div class="fastsewa-chatbot-container" id="chatbox" style="display: none;">
+      <div class="fastsewa-chatbot-header">
+        <b>FastSewa Assistant</b>
+        <button id="closeBtn" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+      <div class="fastsewa-chatbot-body" id="chatBody"></div>
+      <div class="fastsewa-chatbot-footer">
+        <input id="chatInput" class="fastsewa-chatbot-input" placeholder="Type message..." />
+        <button class="fastsewa-chatbot-send-btn" onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+      // Chatbot Logic
+      const API = "/api"; 
+      const chatbox = document.getElementById("chatbox");
+      const chatBody = document.getElementById("chatBody");
+      const input = document.getElementById("chatInput");
+      const toggleBtn = document.getElementById("toggleBtn");
+      const closeBtn = document.getElementById("closeBtn");
+
+      toggleBtn.onclick = () => {
+        if(chatbox.style.display === "flex"){
+            chatbox.style.display = "none";
+        } else {
+            chatbox.style.display = "flex";
+            if(chatBody.innerHTML.trim() === "") initChat();
+        }
+      };
+      
+      closeBtn.onclick = () => {
+        chatbox.style.display = "none";
+      };
+
+      function addMsg(text, type) {
+        const div = document.createElement("div");
+        div.className = "fastsewa-message " + (type === "bot" ? "fastsewa-bot-message" : "fastsewa-user-message");
+        div.innerHTML = text;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      window.sendMessage = async function(key) {
+        let msg = key || input.value.trim();
+        if (!msg) return;
+        addMsg(msg, "user");
+        input.value = "";
+        try {
+          const res = await fetch(`${API}/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: msg })
+          });
+          const data = await res.json();
+          addMsg(data.response || "Sorry, I didn't understand.", "bot");
+        } catch (err) {
+          console.error(err);
+          addMsg("❌ Backend connection failed.", "bot");
+        }
+      };
+
+      input.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
+
+      function initChat() {
+        addMsg("👋 Welcome to FastSewa Support! How can I help you today?", "bot");
+      }
+    </script>
+</body>
+</html>

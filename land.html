@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastSewa Land | Secure Property Verification</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/land.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none;">
+                    <div class="logo-icon">
+                       <img src="images/logo1.png" alt="FastSewa Logo" style="height: 50px; width: auto; margin-right: 1rem;">
+                    </div>
+                    <div class="logo-text" style="font-size: 1.5rem; font-weight: bold; color: #333;">
+                        FastSewa<span style="color: #ff5722;"> Land</span>
+                    </div>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#search-records">Search Records</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#verify-doc">Verify Now</a></li>
+                <li><a href="login.html" class="btn-nav hide-mobile">Login/Signup</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="land-hero" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/3.jpeg'); background-size: cover; background-position: center; color: white; padding: 150px 0 100px; text-align: center;">
+        <div class="container hero-content">
+            <span class="trust-badge" style="background: #22c55e; padding: 5px 15px; border-radius: 20px; font-size: 14px;"><i class="fas fa-shield-alt"></i> 100% Legal Verification</span>
+            <h1 style="font-size: 3.5rem; margin: 20px 0;">Don't Buy Trouble. <br><span style="color: #ff5722;">Verify Before You Buy.</span></h1>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px;">We check government records, on-site possession, and legal disputes to ensure your land investment is safe.</p>
+            
+            <div class="hero-btns" style="display: flex; justify-content: center; gap: 15px;">
+                <a href="#search-records" class="btn btn-primary" style="background: #ff5722; border: none; padding: 12px 30px; color: white; border-radius: 5px; text-decoration: none;">Check Land Record</a>
+                <a href="#verify-doc" class="btn btn-secondary" style="background: transparent; border: 2px solid white; padding: 12px 30px; color: white; border-radius: 5px; text-decoration: none;">Upload Documents</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="search-records" class="section-pad" style="padding: 80px 0;">
+        <div class="container">
+            <div class="search-box-wrapper" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto;">
+                <div class="search-header" style="text-align: center; margin-bottom: 30px;">
+                    <h2 style="color: #333;"><i class="fas fa-search-location" style="color: #ff5722;"></i> Instant Land Record Check</h2>
+                    <p style="color: #666;">Access Bhulekh/Land Records across states instantly.</p>
+                </div>
+                
+                <div class="search-form" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div class="input-group">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">State</label>
+                        <select id="stateSelect" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            <option>Bihar</option>
+                            <option>Uttar Pradesh</option>
+                            <option>Jharkhand</option>
+                            <option>Maharashtra</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">District</label>
+                        <select style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            <option>Patna</option>
+                            <option>Gaya</option>
+                            <option>Muzaffarpur</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label style="display: block; margin-bottom: 5px; font-weight: 500;">Plot / Khasra No.</label>
+                        <input type="text" id="plotInput" placeholder="e.g. 420/A" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    </div>
+                    <button class="btn-search" onclick="searchLand()" style="background: #333; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; height: 100%; margin-top: 24px;">Search Records</button>
+                </div>
+
+                <div id="searchResult" class="search-result" style="display: none; margin-top: 20px; padding: 20px; background: #f9f9f9; border-radius: 10px;">
+                    <div class="loader" id="loader">Loading...</div>
+                    <div class="result-data" id="resultData" style="display: none;">
+                        <div class="status-success" style="color: green; font-weight: bold; margin-bottom: 10px;"><i class="fas fa-check-circle"></i> Record Found</div>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr><td style="padding: 5px;">Owner Name:</td><td><strong>Rajesh Kumar Singh</strong></td></tr>
+                            <tr><td style="padding: 5px;">Area:</td><td>1200 Sq. Ft.</td></tr>
+                            <tr><td style="padding: 5px;">Type:</td><td>Residential / Plot</td></tr>
+                            <tr><td style="padding: 5px;">Dispute Status:</td><td style="color: green;">Clear (No Court Stay)</td></tr>
+                        </table>
+                        <button class="btn-full-report" style="margin-top: 15px; background: #ff5722; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Download Full Report (PDF)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-pad bg-light" style="padding: 80px 0; background: #f4f4f4;">
+        <div class="container">
+            <div class="section-title" style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-size: 2.5rem;">Comprehensive Verification</h2>
+                <p style="color: #666;">We go beyond just online records.</p>
+            </div>
+            
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div class="svc-card" style="background: white; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;">
+                    <div class="icon-box" style="font-size: 40px; color: #ff5722; margin-bottom: 20px;"><i class="fas fa-file-contract"></i></div>
+                    <h3>Title Verification</h3>
+                    <p style="color: #666;">Tracing ownership history for the last 30 years to ensure clean title.</p>
+                </div>
+                <div class="svc-card" style="background: white; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;">
+                    <div class="icon-box" style="font-size: 40px; color: #ff5722; margin-bottom: 20px;"><i class="fas fa-ruler-combined"></i></div>
+                    <h3>Physical Survey</h3>
+                    <p style="color: #666;">On-ground measurement to check actual area vs. documented area.</p>
+                </div>
+                <div class="svc-card" style="background: white; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;">
+                    <div class="icon-box" style="font-size: 40px; color: #ff5722; margin-bottom: 20px;"><i class="fas fa-gavel"></i></div>
+                    <h3>Litigation Check</h3>
+                    <p style="color: #666;">Checking local courts for any pending cases or stay orders on the land.</p>
+                </div>
+                <div class="svc-card" style="background: white; padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;">
+                    <div class="icon-box" style="font-size: 40px; color: #ff5722; margin-bottom: 20px;"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>Market Valuation</h3>
+                    <p style="color: #666;">Getting the true government circle rate and market value estimation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="verify-doc" class="section-pad" style="padding: 80px 0;">
+        <div class="container split-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
+            <div class="left-content">
+                <h2 style="margin-bottom: 20px;">Get an Expert Legal Opinion</h2>
+                <p style="color: #666; margin-bottom: 20px;">Upload your registry papers, agreements, or maps. Our legal team will analyze them and give you a "Safe to Buy" score.</p>
+                
+                <ul class="benefit-list" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: green; margin-right: 10px;"></i> 48-Hour Turnaround</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: green; margin-right: 10px;"></i> Lawyer Certified Report</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: green; margin-right: 10px;"></i> Hidden Clauses Detection</li>
+                </ul>
+            </div>
+
+            <div class="right-form">
+                <div class="upload-card" style="background: white; padding: 30px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 20px;">Request Verification</h3>
+                    <form onsubmit="event.preventDefault(); submitRequest();">
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <input type="text" placeholder="Your Name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <input type="tel" placeholder="Mobile Number" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                        
+                        <div class="drop-zone" id="dropZone" style="border: 2px dashed #ddd; padding: 30px; text-align: center; border-radius: 5px; cursor: pointer; margin-bottom: 20px;">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 30px; color: #aaa;"></i>
+                            <p style="margin: 10px 0; color: #666;">Drag & drop property documents here</p>
+                            <small style="color: #999;">or click to browse (PDF, JPG)</small>
+                            <input type="file" id="fileInput" hidden>
+                        </div>
+                        <div id="fileName" class="file-name" style="margin-bottom: 10px; font-size: 14px; color: green;"></div>
+
+                        <button type="submit" class="btn-submit" style="width: 100%; background: #ff5722; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer;">Submit for Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #111; color: #fff; padding: 40px 0 20px; font-family: 'Poppins', sans-serif;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid #333; padding-bottom: 30px;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Our Office</h3>
+                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-map-marker-alt" style="color:#ff5722; margin-right:10px;"></i> B Hub, Gandhi Maidan, Patna, Bihar</p>
+                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-phone-alt" style="color:#ff5722; margin-right:10px;"></i> +91 8275723755</p>
+                    <p style="font-size: 14px; color: #bbb;"><i class="fas fa-envelope" style="color:#ff5722; margin-right:10px;"></i> Fastsewa2020@gmail.com</p>
+                </div>
+                <div style="flex: 1; min-width: 250px; text-align: center;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Connect With Us</h3>
+                    <div style="display: flex; justify-content: center; gap: 15px;">
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Live Statistics</h3>
+                    <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <p style="margin: 8px 0; font-size: 15px; color: #eee;">Total Visitors: <span style="color: #ff5722; font-weight: 700; float: right;">12,543</span></p>
+                        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #333; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="font-size: 14px; color: #22c55e;"><span style="height: 8px; width: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 8px;"></span> Online Now</span>
+                            <span style="font-weight: 700; color: #22c55e;">24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 20px; font-size: 13px; color: #666;">
+                <p>&copy; 2024 FastSewa Land Services. Built for Trust. | Developed by Team Vivek Kumar</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="fastsewa-chatbot-toggle" id="toggleBtn">
+      <i class="fas fa-headset"></i>
+    </button>
+
+    <div class="fastsewa-chatbot-container" id="chatbox" style="display: none;">
+      <div class="fastsewa-chatbot-header">
+        <b>FastSewa Assistant</b>
+        <button id="closeBtn" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+      <div class="fastsewa-chatbot-body" id="chatBody"></div>
+      <div class="fastsewa-chatbot-footer">
+        <input id="chatInput" class="fastsewa-chatbot-input" placeholder="Type message..." />
+        <button class="fastsewa-chatbot-send-btn" onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/land.js"></script>
+    <script>
+      // Chatbot Integration
+      const API = "/api"; 
+      const chatbox = document.getElementById("chatbox");
+      const chatBody = document.getElementById("chatBody");
+      const input = document.getElementById("chatInput");
+      const toggleBtn = document.getElementById("toggleBtn");
+      const closeBtn = document.getElementById("closeBtn");
+
+      toggleBtn.onclick = () => {
+        if(chatbox.style.display === "flex"){
+            chatbox.style.display = "none";
+        } else {
+            chatbox.style.display = "flex";
+            if(chatBody.innerHTML.trim() === "") initChat();
+        }
+      };
+      
+      closeBtn.onclick = () => {
+        chatbox.style.display = "none";
+      };
+
+      function addMsg(text, type) {
+        const div = document.createElement("div");
+        div.className = "fastsewa-message " + (type === "bot" ? "fastsewa-bot-message" : "fastsewa-user-message");
+        div.innerHTML = text;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      window.sendMessage = async function(key) {
+        let msg = key || input.value.trim();
+        if (!msg) return;
+        addMsg(msg, "user");
+        input.value = "";
+        try {
+          const res = await fetch(`${API}/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: msg })
+          });
+          const data = await res.json();
+          addMsg(data.response || "Sorry, I didn't understand.", "bot");
+        } catch (err) {
+          console.error(err);
+          addMsg("❌ Backend connection failed.", "bot");
+        }
+      };
+
+      input.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
+
+      function initChat() {
+        addMsg("👋 Welcome to FastSewa Land Services! Need help verifying property?", "bot");
+      }
+
+      // Drag and Drop Logic
+      const dropZone = document.getElementById('dropZone');
+      const fileInput = document.getElementById('fileInput');
+      const fileNameDisplay = document.getElementById('fileName');
+
+      dropZone.addEventListener('click', () => fileInput.click());
+
+      fileInput.addEventListener('change', () => {
+          if (fileInput.files.length > 0) {
+              fileNameDisplay.textContent = "Selected: " + fileInput.files[0].name;
+          }
+      });
+
+      function submitRequest() {
+          alert("Document submitted successfully for verification! Our team will contact you shortly.");
+      }
+
+      // Mock Search Function
+      function searchLand() {
+          document.getElementById('searchResult').style.display = 'block';
+          document.getElementById('loader').style.display = 'block';
+          document.getElementById('resultData').style.display = 'none';
+          
+          setTimeout(() => {
+              document.getElementById('loader').style.display = 'none';
+              document.getElementById('resultData').style.display = 'block';
+          }, 1500);
+      }
+    </script>
+</body>
+</html>

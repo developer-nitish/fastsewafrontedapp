@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastSewa - Income Tax Advisory</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --accent: #ff5722;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+        }
+
+        /* Hero Section Override */
+        .tax-hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        /* Services Grid */
+        .service-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+            text-align: left;
+        }
+        .service-card ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f3f4f6;
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+        .service-card ul li:before {
+            content: "✓";
+            color: var(--primary);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* Stats Section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 60px 0;
+        }
+        .stat-box {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        /* Benefits Grid */
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .benefit-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .benefit-card:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .benefit-card .icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0 auto 15px;
+        }
+
+        /* Form Styling */
+        .footer-form {
+            background: #111827;
+            color: white;
+            padding: 80px 0;
+            margin-top: 60px;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            flex: 1;
+        }
+        .form-group.full-width {
+            width: 100%;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #374151;
+            background: #1f2937;
+            color: white;
+            margin-top: 5px;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row { flex-direction: column; gap: 15px; }
+            .process-steps { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none;">
+                    <div class="logo-icon">
+                       <img src="images/logo1.png" alt="FastSewa Logo" style="height: 50px; width: auto; margin-right: 1rem;">
+                    </div>
+                    <div class="logo-text" style="font-size: 1.5rem; font-weight: bold; color: #333;">
+                        FastSewa<span style="color: #ff5722;"> Facilities&reg;</span>
+                    </div>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gst.html">GST Services</a></li>
+                <li><a href="finance.html">Loans</a></li>
+                <li><a href="#contactForm">Contact</a></li>
+                <li><a href="login.html" class="btn-nav hide-mobile">Login/Signup</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="tax-hero">
+        <div class="container">
+            <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem;">Income Tax Advisory</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto;">Strategic tax planning, ITR filing, and audit representation to maximize your savings legally and ensure 100% compliance.</p>
+            <a href="#contactForm" class="btn btn-primary" style="margin-top: 30px; background: #ff5722; border: none; padding: 12px 30px; display: inline-block; color: white; border-radius: 50px; text-decoration: none;">Get Free Consultation</a>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 80px 20px;">
+        <div class="intro-section" style="text-align: center; margin-bottom: 60px;">
+            <h2 style="font-size: 2.5rem; color: var(--dark); margin-bottom: 15px;">Expert Tax Solutions</h2>
+            <p style="color: #6b7280; max-width: 800px; margin: 0 auto;">Navigate the complex tax landscape with confidence. Our expert advisors help you minimize tax liability while staying fully compliant with Indian tax laws.</p>
+        </div>
+
+        <div class="grid-3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Strategic Tax Planning</h3>
+                <p>Comprehensive tax planning strategies tailored to your financial goals.</p>
+                <ul>
+                    <li>Investment planning under 80C</li>
+                    <li>Salary restructuring</li>
+                    <li>Business expense optimization</li>
+                    <li>HRA and other deductions</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📝</div>
+                <h3>ITR Filing Services</h3>
+                <p>Hassle-free income tax return filing for all categories with maximum refund claims.</p>
+                <ul>
+                    <li>ITR-1 to ITR-7 filing</li>
+                    <li>Revised return filing</li>
+                    <li>Belated return filing</li>
+                    <li>Loss carry forward returns</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Audit Representation</h3>
+                <p>Expert representation and support during income tax assessments and audits.</p>
+                <ul>
+                    <li>Notice handling</li>
+                    <li>Assessment proceedings</li>
+                    <li>Appeal filing</li>
+                    <li>Penalty mitigation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-box">
+                <span class="stat-number" data-target="2500">2,500+</span>
+                <span class="stat-label">Tax Returns Filed</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number" data-target="95">98%</span>
+                <span class="stat-label">Client Satisfaction</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number" data-target="15">15+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number" data-target="30">30%</span>
+                <span class="stat-label">Avg Tax Savings</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #f9fafb; padding: 80px 0;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Why Choose Us?</h2>
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <span class="icon">💰</span>
+                    <h4>Maximize Savings</h4>
+                    <p>Legal strategies to minimize your tax liability.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">⚖️</span>
+                    <h4>100% Compliance</h4>
+                    <p>Avoid penalties with accurate filings.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">🎯</span>
+                    <h4>Expert Guidance</h4>
+                    <p>Certified Chartered Accountants.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">⏰</span>
+                    <h4>Timely Filing</h4>
+                    <p>Never miss a tax deadline.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">🔒</span>
+                    <h4>Confidential</h4>
+                    <p>Your financial data is secure with us.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="icon">📞</span>
+                    <h4>24/7 Support</h4>
+                    <p>Always available for your queries.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="padding: 80px 20px;">
+        <div class="process-section">
+            <h2 style="text-align: center; margin-bottom: 40px;">Our Simple 4-Step Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Consultation</h4>
+                    <p>Free initial discussion to understand your tax situation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Analysis</h4>
+                    <p>Detailed analysis of income and potential deductions.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Planning</h4>
+                    <p>Strategic planning and return preparation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Filing & Support</h4>
+                    <p>Filing your return and handling any future notices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactForm" class="footer-form">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="text-align: center; margin-bottom: 10px;">Get Your Free Tax Consultation</h2>
+            <p style="text-align: center; color: #9ca3af; margin-bottom: 40px;">Fill in your details and our tax expert will contact you within 24 hours</p>
+            
+            <form id="itrForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" name="phone" required placeholder="+91 XXXXX XXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>PAN Number (Optional)</label>
+                        <input type="text" name="pan" placeholder="ABCDE1234F" maxlength="10" style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Taxpayer Category *</label>
+                        <select name="taxpayer" required>
+                            <option value="">Select Category</option>
+                            <option value="individual">Individual/Salaried</option>
+                            <option value="business">Business/Professional</option>
+                            <option value="company">Company</option>
+                            <option value="freelancer">Freelancer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Required *</label>
+                        <select name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="itr-filing">ITR Filing</option>
+                            <option value="tax-planning">Tax Planning</option>
+                            <option value="audit-support">Audit Support</option>
+                            <option value="notice-handling">Notice Handling</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Tell Us About Your Tax Requirements</label>
+                    <textarea name="message" rows="4" placeholder="Any specific tax concerns or questions..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Get Free Consultation</button>
+            </form>
+        </div>
+    </div>
+
+    <footer style="background: #111; color: #fff; padding: 40px 0 20px; font-family: 'Poppins', sans-serif;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid #333; padding-bottom: 30px;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Our Office</h3>
+                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-map-marker-alt" style="color:#ff5722; margin-right:10px;"></i> B Hub, Gandhi Maidan, Patna, Bihar</p>
+                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-phone-alt" style="color:#ff5722; margin-right:10px;"></i> +91 8275723755</p>
+                    <p style="font-size: 14px; color: #bbb;"><i class="fas fa-envelope" style="color:#ff5722; margin-right:10px;"></i> Fastsewa2020@gmail.com</p>
+                </div>
+                <div style="flex: 1; min-width: 250px; text-align: center;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Connect With Us</h3>
+                    <div style="display: flex; justify-content: center; gap: 15px;">
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #ff5722; margin-bottom: 20px;">Live Statistics</h3>
+                    <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <p style="margin: 8px 0; font-size: 15px; color: #eee;">Total Visitors: <span style="color: #ff5722; font-weight: 700; float: right;">12,543</span></p>
+                        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #333; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="font-size: 14px; color: #22c55e;"><span style="height: 8px; width: 8px; background: #22c55e; border-radius: 50%; display: inline-block; margin-right: 8px;"></span> Online Now</span>
+                            <span style="font-weight: 700; color: #22c55e;">24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 20px; font-size: 13px; color: #666;">
+                <p>&copy; 2024 FastSewa Super Portal. All rights reserved. | Developed by Team Nitish Kumar & Team Vivek Kumar</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="fastsewa-chatbot-toggle" id="toggleBtn">
+      <i class="fas fa-headset"></i>
+    </button>
+
+    <div class="fastsewa-chatbot-container" id="chatbox" style="display: none;">
+      <div class="fastsewa-chatbot-header">
+        <b>FastSewa Assistant</b>
+        <button id="closeBtn" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+      <div class="fastsewa-chatbot-body" id="chatBody"></div>
+      <div class="fastsewa-chatbot-footer">
+        <input id="chatInput" class="fastsewa-chatbot-input" placeholder="Type message..." />
+        <button class="fastsewa-chatbot-send-btn" onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/incometax.js"></script>
+    <script>
+      // Form Handling
+      document.getElementById('itrForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Thank you! Your request for Tax Consultation has been submitted. Our expert will call you shortly.');
+          this.reset();
+      });
+
+      // Chatbot Logic
+      const API = "/api"; 
+      const chatbox = document.getElementById("chatbox");
+      const chatBody = document.getElementById("chatBody");
+      const input = document.getElementById("chatInput");
+      const toggleBtn = document.getElementById("toggleBtn");
+      const closeBtn = document.getElementById("closeBtn");
+
+      toggleBtn.onclick = () => {
+        if(chatbox.style.display === "flex"){
+            chatbox.style.display = "none";
+        } else {
+            chatbox.style.display = "flex";
+            if(chatBody.innerHTML.trim() === "") initChat();
+        }
+      };
+      
+      closeBtn.onclick = () => {
+        chatbox.style.display = "none";
+      };
+
+      function addMsg(text, type) {
+        const div = document.createElement("div");
+        div.className = "fastsewa-message " + (type === "bot" ? "fastsewa-bot-message" : "fastsewa-user-message");
+        div.innerHTML = text;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      window.sendMessage = async function(key) {
+        let msg = key || input.value.trim();
+        if (!msg) return;
+        addMsg(msg, "user");
+        input.value = "";
+        try {
+          const res = await fetch(`${API}/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: msg })
+          });
+          const data = await res.json();
+          addMsg(data.response || "Sorry, I didn't understand.", "bot");
+        } catch (err) {
+          console.error(err);
+          addMsg("❌ Backend connection failed.", "bot");
+        }
+      };
+
+      input.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
+
+      function initChat() {
+        addMsg("👋 Welcome to FastSewa! Do you need help with ITR or Tax Planning?", "bot");
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastSewa Medical | Premium Health Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/medical.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html" class="logo" style="display: flex; align-items: center; text-decoration: none;">
+                    <div class="logo-icon">
+                       <img src="images/logo1.png" alt="FastSewa Logo" style="height: 50px; width: auto; margin-right: 1rem;">
+                    </div>
+                    <div class="logo-text" style="font-size: 1.5rem; font-weight: bold; color: #333;">
+                        FastSewa<span style="color: #22c55e;"> Medical</span>
+                    </div>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#doctors">Find Doctors</a></li>
+                <li><a href="#book-final">Book Now</a></li>
+                <li><a href="login.html" class="btn-nav hide-mobile">Login/Signup</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="med-hero" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/3.jpeg'); background-size: cover; background-position: center; padding: 150px 0 100px; color: white;">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+            <div class="hero-content" style="max-width: 600px;">
+                <span class="badge" style="background: #22c55e; padding: 5px 15px; border-radius: 20px; font-size: 14px;">24/7 Online Support</span>
+                <h1 style="font-size: 3.5rem; margin: 20px 0;">World-Class Healthcare <br><span style="color: #22c55e;">At Your Doorstep</span></h1>
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">Experience the future of medical assistance. AI-powered diagnosis, instant doctor booking, and medicine delivery.</p>
+                
+                <div class="search-box" style="background: white; padding: 10px; border-radius: 50px; display: flex; max-width: 400px;">
+                    <i class="fas fa-search" style="color: #666; padding: 10px;"></i>
+                    <input type="text" id="dynamicSearch" placeholder="Search for doctors..." style="border: none; flex: 1; outline: none;">
+                    <button style="background: #22c55e; color: white; border: none; padding: 10px 25px; border-radius: 50px; cursor: pointer;">Find</button>
+                </div>
+            </div>
+            
+            </div>
+    </header>
+
+    <section id="services" class="section-pad" style="padding: 80px 0;">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+                <h2 style="font-size: 2.5rem; color: #333;">Our Medical Departments</h2>
+                <p style="color: #666;">Comprehensive care for you and your family.</p>
+            </div>
+            <div class="services-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div class="svc-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <div class="icon-bg blue" style="font-size: 40px; color: #3b82f6; margin-bottom: 20px;"><i class="fas fa-heart-pulse"></i></div>
+                    <h3>Cardiology</h3>
+                    <p style="color: #666; margin: 15px 0;">Expert heart care, ECGs, and surgeries by top cardiologists.</p>
+                    <a href="#book-final" onclick="bookDoctor('Any Specialist', 'Cardiology')" style="color: #3b82f6; text-decoration: none; font-weight: bold;">Book Consult <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="svc-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <div class="icon-bg green" style="font-size: 40px; color: #22c55e; margin-bottom: 20px;"><i class="fas fa-tooth"></i></div>
+                    <h3>Dental Care</h3>
+                    <p style="color: #666; margin: 15px 0;">Root canals, implants, and cosmetic dentistry services.</p>
+                    <a href="#book-final" onclick="bookDoctor('Any Specialist', 'Dental')" style="color: #22c55e; text-decoration: none; font-weight: bold;">Book Consult <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="svc-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <div class="icon-bg purple" style="font-size: 40px; color: #a855f7; margin-bottom: 20px;"><i class="fas fa-brain"></i></div>
+                    <h3>Neurology</h3>
+                    <p style="color: #666; margin: 15px 0;">Treatment for migraines, nerve disorders, and brain health.</p>
+                    <a href="#book-final" onclick="bookDoctor('Any Specialist', 'Neurology')" style="color: #a855f7; text-decoration: none; font-weight: bold;">Book Consult <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="svc-card" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <div class="icon-bg orange" style="font-size: 40px; color: #f97316; margin-bottom: 20px;"><i class="fas fa-baby"></i></div>
+                    <h3>Pediatrics</h3>
+                    <p style="color: #666; margin: 15px 0;">Specialized care for infants, children, and adolescents.</p>
+                    <a href="#book-final" onclick="bookDoctor('Any Specialist', 'Pediatrics')" style="color: #f97316; text-decoration: none; font-weight: bold;">Book Consult <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="doctors" class="section-pad bg-light" style="padding: 80px 0; background: #f9fafb;">
+        <div class="container">
+            <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-size: 2.5rem; color: #333;">Top Specialists</h2>
+                <div class="filter-pills" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
+                    <button class="pill active" onclick="filterDocs('All')" style="padding: 8px 20px; border: none; background: #22c55e; color: white; border-radius: 20px; cursor: pointer;">All</button>
+                    <button class="pill" onclick="filterDocs('Cardiologist')" style="padding: 8px 20px; border: 1px solid #ddd; background: white; border-radius: 20px; cursor: pointer;">Cardio</button>
+                    <button class="pill" onclick="filterDocs('Dentist')" style="padding: 8px 20px; border: 1px solid #ddd; background: white; border-radius: 20px; cursor: pointer;">Dental</button>
+                    <button class="pill" onclick="filterDocs('General')" style="padding: 8px 20px; border: 1px solid #ddd; background: white; border-radius: 20px; cursor: pointer;">General</button>
+                </div>
+            </div>
+            <div id="doctorGrid" class="doctor-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                <div style="text-align: center; color: #666; grid-column: 1/-1;">Loading Doctors...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-assistant" class="ai-wrapper" style="padding: 80px 0; background: #1e293b; color: white;">
+        <div class="container ai-flex" style="display: flex; flex-wrap: wrap; gap: 50px; align-items: center;">
+            <div class="ai-info" style="flex: 1; min-width: 300px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;"><i class="fas fa-robot"></i> Not feeling well?</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px;">Chat with <strong>FastSewa AI</strong>. Describe your symptoms, and it will suggest the right specialist and even book the appointment for you.</p>
+                <ul class="check-list" style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> Instant Analysis</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> 24/7 Availability</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #22c55e; margin-right: 10px;"></i> Private & Secure</li>
+                </ul>
+            </div>
+            <div class="chat-box" style="flex: 1; min-width: 300px; background: white; border-radius: 15px; overflow: hidden; color: #333;">
+                <div class="chat-history" id="chatHistory" style="height: 300px; padding: 20px; overflow-y: auto; background: #f1f5f9;">
+                    <div class="msg bot" style="background: #e2e8f0; padding: 10px; border-radius: 10px; display: inline-block; max-width: 80%;">Hi! Tell me your symptoms (e.g., "I have a headache").</div>
+                </div>
+                <div class="chat-input" style="display: flex; border-top: 1px solid #ddd;">
+                    <input type="text" id="aiInput" placeholder="Type here..." style="flex: 1; padding: 15px; border: none; outline: none;">
+                    <button onclick="sendAiMessage()" style="background: #22c55e; color: white; border: none; padding: 0 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="book-final" class="booking-section" style="padding: 80px 0;">
+        <div class="container">
+            <div class="booking-card" style="display: flex; flex-wrap: wrap; background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); overflow: hidden;">
+                <div class="booking-left" style="flex: 1; min-width: 300px; background: #22c55e; color: white; padding: 40px;">
+                    <h3 style="font-size: 2rem; margin-bottom: 10px;">Confirm Booking</h3>
+                    <p style="opacity: 0.9; margin-bottom: 30px;">Secure your slot instantly.</p>
+                    <div class="info-row" style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91 82757 23755</span>
+                    </div>
+                    <div class="info-row" style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@fastsewa.com</span>
+                    </div>
+                </div>
+                
+                <div class="booking-right" style="flex: 1.5; min-width: 300px; padding: 40px;">
+                    <form id="finalForm" onsubmit="event.preventDefault(); bookAppointment();">
+                        
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Preferred Doctor</label>
+                            <input type="text" id="selectedDoc" value="Any Available Specialist" readonly style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; cursor: not-allowed;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Department</label>
+                            <select id="deptSelect" required onchange="checkAvailability()" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                                <option value="" disabled selected>Choose Service...</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Dental">Dental Care</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="General">General Physician</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label style="display: block; margin-bottom: 5px; font-weight: 500;">Date</label>
+                                <input type="date" id="bookDate" required onchange="checkAvailability()" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label style="display: block; margin-bottom: 5px; font-weight: 500;">Time Slot</label>
+                                <select id="timeSlot" disabled style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                                    <option>Select Date First</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 500;">Patient Name</label>
+                            <input type="text" id="patName" placeholder="Full Name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <button type="submit" class="btn-submit" style="width: 100%; background: #22c55e; color: white; border: none; padding: 15px; border-radius: 5px; cursor: pointer; font-size: 1rem; font-weight: bold;">Confirm Appointment</button>
+                        <p id="bookingStatus" class="status-msg" style="margin-top: 10px; text-align: center; color: green;"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #111; color: #fff; padding: 40px 0 20px; font-family: sans-serif;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-bottom: 1px solid #333; padding-bottom: 30px;">
+                
+                <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #22c55e; margin-bottom: 20px;">Our Office</h3>
+                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-map-marker-alt" style="color:#22c55e; margin-right:10px;"></i> B Hub, Gandhi Maidan, Patna, Bihar</p>
+                    <p style="font-size: 14px; color: #bbb; margin-bottom: 8px;"><i class="fas fa-phone-alt" style="color:#22c55e; margin-right:10px;"></i> +91 8275723755</p>
+                    <p style="font-size: 14px; color: #bbb;"><i class="fas fa-envelope" style="color:#22c55e; margin-right:10px;"></i> Fastsewa2020@gmail.com</p>
+                </div>
+
+                <div style="flex: 1; min-width: 250px; text-align: center;">
+                    <h3 style="color: #22c55e; margin-bottom: 20px;">Connect With Us</h3>
+                    <div style="display: flex; justify-content: center; gap: 15px;">
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #fff; font-size: 20px;"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+               <div style="flex: 1; min-width: 250px;">
+                    <h3 style="color: #22c55e; margin-bottom: 20px;">Live Statistics</h3>
+                    <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <p style="margin: 8px 0; font-size: 15px; color: #eee;">
+                            Total Visitors: <span style="color: #22c55e; font-weight: 700; float: right;">12,450</span>
+                        </p>
+                        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid #333; display: flex; align-items: center; justify-content: space-between;">
+                            <span style="font-size: 14px; color: #22c55e; display: flex; align-items: center;">
+                                <span class="live-dot" style="height: 8px; width: 8px; background: #22c55e; border-radius: 50%; margin-right: 8px; display: inline-block;"></span> Online Now
+                            </span>
+                            <span style="font-weight: 700; color: #22c55e;">24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; padding-top: 20px; font-size: 13px; color: #666;">
+                <p>&copy; 2024 FastSewa Medical Portal. All rights reserved. | Developed by Team Vivek Kumar</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="fastsewa-chatbot-toggle" id="toggleBtn">
+      <i class="fas fa-headset"></i>
+    </button>
+
+    <div class="fastsewa-chatbot-container" id="chatbox" style="display: none;">
+      <div class="fastsewa-chatbot-header">
+        <b>FastSewa Assistant</b>
+        <button id="closeBtn" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+      <div class="fastsewa-chatbot-body" id="chatBody"></div>
+      <div class="fastsewa-chatbot-footer">
+        <input id="chatInput" class="fastsewa-chatbot-input" placeholder="Type message..." />
+        <button class="fastsewa-chatbot-send-btn" onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/medical.js"></script>
+    
+    <script>
+      // Chatbot Logic
+      const API = "/api"; 
+      const chatbox = document.getElementById("chatbox");
+      const chatBody = document.getElementById("chatBody");
+      const input = document.getElementById("chatInput");
+      const toggleBtn = document.getElementById("toggleBtn");
+      const closeBtn = document.getElementById("closeBtn");
+
+      toggleBtn.onclick = () => {
+        if(chatbox.style.display === "flex"){
+            chatbox.style.display = "none";
+        } else {
+            chatbox.style.display = "flex";
+            if(chatBody.innerHTML.trim() === "") initChat();
+        }
+      };
+      
+      closeBtn.onclick = () => {
+        chatbox.style.display = "none";
+      };
+
+      function addMsg(text, type) {
+        const div = document.createElement("div");
+        div.className = "fastsewa-message " + (type === "bot" ? "fastsewa-bot-message" : "fastsewa-user-message");
+        div.innerHTML = text;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      window.sendMessage = async function(key) {
+        let msg = key || input.value.trim();
+        if (!msg) return;
+        addMsg(msg, "user");
+        input.value = "";
+        try {
+          const res = await fetch(`${API}/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: msg })
+          });
+          const data = await res.json();
+          addMsg(data.response || "Sorry, I didn't understand.", "bot");
+        } catch (err) {
+          console.error(err);
+          addMsg("❌ Backend connection failed.", "bot");
+        }
+      };
+
+      input.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
+
+      function initChat() {
+        addMsg("👋 Welcome to FastSewa Medical! Are you feeling unwell?", "bot");
+      }
+
+      // Booking Logic (Simplified)
+      function bookDoctor(docName, dept) {
+          document.getElementById('selectedDoc').value = docName;
+          document.getElementById('deptSelect').value = dept;
+          document.getElementById('book-final').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function checkAvailability() {
+          const date = document.getElementById('bookDate').value;
+          const timeSelect = document.getElementById('timeSlot');
+          
+          if(date) {
+              timeSelect.disabled = false;
+              timeSelect.innerHTML = `
+                  <option>10:00 AM - 11:00 AM</option>
+                  <option>02:00 PM - 03:00 PM</option>
+                  <option>06:00 PM - 07:00 PM</option>
+              `;
+          }
+      }
+
+      function bookAppointment() {
+          document.getElementById('bookingStatus').innerText = "✅ Appointment Confirmed! We will contact you shortly.";
+      }
+    </script>
+</body>
+</html>
