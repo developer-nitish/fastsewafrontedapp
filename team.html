@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="css/chatbot.css">
 
     <style>
-        /* --- TEAM PAGE UNIQUE STYLES --- */
-        body { background-color: #f0f4f8; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        body { background-color: #f8fafc; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
 
         .navbar {
             position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -24,101 +23,81 @@
             padding: 15px 0;
         }
 
-        /* Hero / Quote Section */
+        /* --- HERO SECTION --- */
         .team-hero {
             padding: 140px 20px 80px;
             text-align: center;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
-            position: relative;
             clip-path: ellipse(150% 100% at 50% 0%);
         }
+        .team-hero h1 { font-size: 3.5rem; font-weight: 800; color: #ff5722; }
+        .main-quote { font-size: 1.2rem; font-style: italic; max-width: 800px; margin: 0 auto; color: #cbd5e1; }
 
-        .team-hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; color: #ff5722; }
-        .main-quote {
-            font-size: 1.4rem; font-style: italic; max-width: 800px;
-            margin: 0 auto; color: #cbd5e1; line-height: 1.6;
+        /* --- SECTION HEADINGS --- */
+        .dept-title { 
+            text-align: center; font-size: 2.2rem; font-weight: 700; color: #0f172a; 
+            margin: 60px 0 40px; position: relative;
         }
-        .quote-author { display: block; margin-top: 15px; color: #94a3b8; font-weight: 500; letter-spacing: 2px; }
+        .dept-title span { color: #ff5722; }
 
-        /* Team Grid Layout */
-        .team-section { padding: 100px 0; }
+        /* --- TEAM GRID --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
         }
 
-        /* Member Card Styling */
+        /* --- MEMBER CARD --- */
         .member-card {
             background: white;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: 0.4s ease;
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 25px;
         }
+        .member-card:hover { transform: translateY(-10px); border-color: #ff5722; box-shadow: 0 20px 40px rgba(255, 87, 34, 0.1); }
 
-        .member-card:hover { transform: translateY(-15px); box-shadow: 0 20px 50px rgba(255, 87, 34, 0.15); border-color: #ff5722; }
-
-        .image-container {
-            height: 320px;
-            position: relative;
-            background: #e5e7eb;
+        .image-box {
+            width: 100%;
+            height: 350px;
+            background: #e2e8f0;
+            margin-bottom: 20px;
             overflow: hidden;
         }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .member-card:hover .image-box img { transform: scale(1.05); }
 
-        .image-container img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.5s ease;
+        .member-info { padding: 0 20px; text-align: center; flex-grow: 1; }
+        .member-name { font-size: 1.5rem; font-weight: 700; color: #0f172a; margin-bottom: 5px; }
+        .member-role { color: #ff5722; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; display: block; margin-bottom: 10px; }
+        .member-college { font-size: 0.85rem; color: #64748b; font-weight: 500; margin-bottom: 15px; display: block; }
+
+        /* --- SOCIAL BUTTONS --- */
+        .contact-btns { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
+        .social-btn {
+            width: 45px; height: 45px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: #f1f5f9; color: #0f172a; transition: 0.3s;
+            text-decoration: none; font-size: 1.2rem;
         }
+        .social-btn.linkedin:hover { background: #0077b5; color: white; transform: rotate(360deg); }
+        .social-btn.email:hover { background: #ff5722; color: white; transform: rotate(360deg); }
 
-        .member-card:hover .image-container img { transform: scale(1.1); }
-
-        /* Hover Social Overlay */
-        .social-overlay {
-            position: absolute; top: 0; left: -100%; width: 60px; height: 100%;
-            background: rgba(255, 87, 34, 0.9);
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; gap: 20px;
-            transition: 0.4s ease-in-out;
-        }
-
-        .member-card:hover .social-overlay { left: 0; }
-
-        .social-overlay a { color: white; font-size: 1.2rem; transition: 0.3s; }
-        .social-overlay a:hover { transform: scale(1.3); color: #0f172a; }
-
-        /* Member Info */
-        .member-info { padding: 30px 20px; text-align: center; }
-        .member-name { font-size: 1.4rem; font-weight: 700; color: #1e293b; margin-bottom: 5px; }
-        .member-role { 
-            color: #ff5722; font-weight: 600; font-size: 0.9rem; 
-            text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 15px;
-        }
-        .member-bio { font-size: 0.9rem; color: #64748b; line-height: 1.5; }
-
-        /* Department Labels */
-        .dept-section { margin-bottom: 60px; }
-        .dept-title { 
-            font-size: 1.8rem; font-weight: 700; color: #1e293b; 
-            margin-bottom: 30px; display: flex; align-items: center; gap: 15px; 
-        }
-        .dept-title::after { content: ''; height: 3px; flex: 1; background: #e2e8f0; border-radius: 10px; }
-
-        @media (max-width: 768px) {
-            .team-hero h1 { font-size: 2.5rem; }
-            .main-quote { font-size: 1.1rem; }
-        }
+        @media (max-width: 768px) { .team-hero h1 { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="container nav-container" style="display: flex; justify-content: space-between; align-items: center; width: 90%; margin: 0 auto; max-width: 1200px;">
+        <div class="container nav-container" style="display: flex; justify-content: space-between; align-items: center; width: 90%; margin: 0 auto;">
             <div class="logo">
                 <a href="index.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
                     <img src="images/logo1.png" alt="FS" style="height: 50px; width: auto;">
@@ -126,111 +105,116 @@
                 </a>
             </div>
             <ul class="nav-links" style="display: flex; gap: 30px; list-style: none;">
-                <li><a href="index.html" style="color: #0f172a; font-weight: 500; text-decoration: none;">Home</a></li>
-                <li><a href="about.html" style="color: #0f172a; font-weight: 500; text-decoration: none;">About</a></li>
-                <li><a href="team.html" style="color: #ff5722; font-weight: 700; text-decoration: none;">Team</a></li>
-                <li id="auth-action">
-                    <a href="login.html" style="padding: 10px 25px; border-radius: 50px; background: #ff5722; color: white; font-weight: 600; text-decoration: none;">Login</a>
-                </li>
+                <li><a href="index.html" style="color: #0f172a; font-weight: 500;">Home</a></li>
+                <li><a href="about.html" style="color: #0f172a; font-weight: 500;">About</a></li>
+                <li><a href="team.html" style="color: #ff5722; font-weight: 700;">Team</a></li>
             </ul>
         </div>
     </nav>
 
     <header class="team-hero">
         <div class="container">
-            <h1>The Minds Behind FastSewa</h1>
-            <p class="main-quote">
-                "Coming together is a beginning; keeping together is progress; working together is success. At FastSewa, we are not just a team, we are the architects of a more organized future."
-            </p>
-            <span class="quote-author">— TEAM MISSION 2026</span>
+            <h1>Meet Our Elite Squad</h1>
+            <p class="main-quote">"Individually we are one drop, but together we are an ocean. Dedicated to redefining transparency in home services."</p>
         </div>
     </header>
 
-    <section class="team-section">
-        <div class="container">
-            
-            <div class="dept-section">
-                <h2 class="dept-title">Leadership & Vision</h2>
-                <div class="team-grid">
-                    <div class="member-card">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Nitish Kumar">
-                            <div class="social-overlay">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <span class="member-role">Founder & CEO</span>
-                            <h3 class="member-name">Nitish Kumar</h3>
-                            <p class="member-bio">Leading the digital transformation of Indian home services with high-end tech integration.</p>
-                        </div>
-                    </div>
-
-                    <div class="member-card">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vivek Kumar">
-                            <div class="social-overlay">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <span class="member-role">Co-Founder & COO</span>
-                            <h3 class="member-name">Vivek Kumar</h3>
-                            <p class="member-bio">Driving operational excellence and building a verified network of 500+ service partners.</p>
-                        </div>
-                    </div>
+    <section class="container">
+        
+        <h2 class="dept-title">The <span>Visionaries</span></h2>
+        <div class="team-grid">
+            <div class="member-card">
+                <div class="image-box"><img src="images/AKHILESH.jpeg" alt="Akhilesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=Akhilesh+Kumar&background=0f172a&color=fff'"></div>
+                <div class="member-info">
+                    <span class="member-role">Founder & CEO</span>
+                    <h3 class="member-name">Akhilesh Kumar</h3>
+                    <p class="member-bio">The core brain behind the FastSewa ecosystem and strategic expansion.</p>
+                </div>
+                <div class="contact-btns">
+                    <a href="mailto:ceo@fastsewa.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
 
-            <div class="dept-section">
-                <h2 class="dept-title">Tech & Compliance Squad</h2>
-                <div class="team-grid">
-                    <div class="member-card">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team Member">
-                            <div class="social-overlay">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <span class="member-role">Chief Technology Officer</span>
-                            <h3 class="member-name">Arjun Sharma</h3>
-                            <p class="member-bio">Expert in AI & Scalable Infrastructure, managing the Super Portal engine.</p>
-                        </div>
-                    </div>
+            <div class="member-card">
+                <div class="image-box"><img src="images/PRIYANKA JHA.jpeg" alt="Priyanka Jha" onerror="this.src='https://ui-avatars.com/api/?name=Priyanka+Jha&background=ff5722&color=fff'"></div>
+                <div class="member-info">
+                    <span class="member-role">Co-Founder & Head of Strategy</span>
+                    <h3 class="member-name">Priyanka Jha</h3>
+                    <p class="member-bio">Architect of long-term business goals and sustainable growth patterns.</p>
+                </div>
+                <div class="contact-btns">
+                    <a href="mailto:strategy@fastsewa.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
 
-                    <div class="member-card">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team Member">
-                            <div class="social-overlay">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <span class="member-role">Legal Compliance Head</span>
-                            <h3 class="member-name">Priya Varma</h3>
-                            <p class="member-bio">Overseeing GST filing, Trademark laws, and government compliance for clients.</p>
-                        </div>
-                    </div>
+            <div class="member-card">
+                <div class="image-box"><img src="images/varun.jpeg" alt="Varun Kr Jha" onerror="this.src='https://ui-avatars.com/api/?name=Varun+Kr+Jha&background=0f172a&color=fff'"></div>
+                <div class="member-info">
+                    <span class="member-role">COO</span>
+                    <h3 class="member-name">Varun Kr Jha</h3>
+                    <p class="member-bio">Leading on-ground operations and managing service delivery excellence.</p>
+                </div>
+                <div class="contact-btns">
+                    <a href="mailto:coo@fastsewa.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
 
-                    <div class="member-card">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Team Member">
-                            <div class="social-overlay">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-facebook"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <span class="member-role">Customer Success Lead</span>
-                            <h3 class="member-name">Sameer Ahmed</h3>
-                            <p class="member-bio">Ensuring 24/7 support and 100% satisfaction for all FastSewa users.</p>
-                        </div>
-                    </div>
+        <h2 class="dept-title">The <span>Developer</span> Squad</h2>
+        <div class="team-grid">
+            
+            <div class="member-card">
+                <div class="image-box"><img src="images/nitish.jpeg" alt="Nitish Kumar" onerror="this.src='https://ui-avatars.com/api/?name=Nitish+Kumar&background=334155&color=fff'"></div>
+                <div class="member-info">
+                    <span class="member-role">Chief Developer</span>
+                    <h3 class="member-name">Nitish Kumar</h3>
+                    <span class="member-college">Govt. Engineering College, Aurangabad</span>
+                </div>
+                <div class="contact-btns">
+                    <a href="mailto:er.nitshkumar@gmail.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/nitish-kumar-762461281/" target="_blank" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="image-box"><img src="images/nurag Kumar  .jpeg" alt="Anurag Kumar" onerror="this.src='https://ui-avatars.com/api/?name=Anurag+Kumar&background=334155&color=fff'"></div>
+                <div class="member-info">
+                    <span class="member-role">Co-Developer</span>
+                    <h3 class="member-name">Anurag Kumar</h3>
+                    <span class="member-college">Govt. Engineering College, Jamui</span>
+                </div>
+                <div class="contact-btns">
+                    <a href="mailto:anu28112002@gmail.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/anurag-kumar-ln" target="_blank" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="image-box"><img src="images/Harikesh Kumar.jpeg" alt="Harikesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=Harikesh+Kumar&background=334155&color=fff'"></div>
+                <div class="member-info">
+                    <span class="member-role">Co-Developer</span>
+                    <h3 class="member-name">Harikesh Kumar</h3>
+                    <span class="member-college">Govt. Engineering College, Aurangabad</span>
+                </div>
+                <div class="contact-btns">
+                    <a href="mailto:harikeshku83@gmail.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.linkedin.com/in/harikesh-kumar-70062a258" target="_blank" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="image-box"><img src="images/Shudhanshu Sekhar  .jpeg" alt="Shudhanshu Sekhar" onerror="this.src='https://ui-avatars.com/api/?name=Shudhanshu+Sekhar&background=334155&color=fff'"></div>
+                <div class="member-info">
+                    <span class="member-role">Co-Developer</span>
+                    <h3 class="member-name">Shudhanshu Sekhar</h3>
+                    <span class="member-college">Govt. Engineering College, Jamui</span>
+                </div>
+                <div class="contact-btns">
+                    <a href="mailto:shudhanshusekhar7@gmail.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://in.linkedin.com/in/shudhanshu-sekhar-09b3231a0" target="_blank" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
 
@@ -239,24 +223,11 @@
 
     <div id="fastsewa-footer"></div>
 
-    <button class="fastsewa-chatbot-toggle" id="toggleBtn"><i class="fas fa-comment-dots"></i></button>
-    <div class="fastsewa-chatbot-container" id="chatbox" style="display: none;">
-        <div class="fastsewa-chatbot-header">
-            <div><i class="fas fa-robot"></i> FastSewa AI</div>
-            <button id="closeBtn" style="background:none; border:none; color:white; cursor:pointer;">✕</button>
-        </div>
-        <div class="fastsewa-chatbot-body" id="chatBody"></div>
-        <div class="fastsewa-chatbot-footer">
-            <input id="chatInput" class="fastsewa-chatbot-input" placeholder="Type message..." />
-            <button class="fastsewa-chatbot-send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-
     <script src="js/footer.js"></script>
     <script src="js/chatbot.js"></script>
     
     <script>
-        // --- Navbar Profile Logic ---
+        // Navbar Profile Persistence
         document.addEventListener("DOMContentLoaded", function() {
             const user = JSON.parse(localStorage.getItem("fastsewaUser"));
             const authAction = document.getElementById("auth-action");
